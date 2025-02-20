@@ -1,0 +1,73 @@
+### 1️⃣ Sign Up (Register a new user)
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "password": "password123"
+}
+
+
+
+### 2️⃣ Login (Authenticate user & get JWT token)
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "johndoe@example.com",
+  "password": "password123"
+}
+
+### 3️⃣ Get All Notes (Requires Token)
+GET http://localhost:5000/api/notes/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJpYXQiOjE3NDAwNjcxNjMsImV4cCI6MTc0MDA3MDc2M30.iQWZOmvfupHzPu3G5LhlJyvJ95aGXy2fI5HzfdcXlgg
+Content-Type: application/json
+
+
+
+### 4️⃣ Create a New Note (Requires Token)
+POST http://localhost:5000/api/notes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJpYXQiOjE3NDAwNjcxNjMsImV4cCI6MTc0MDA3MDc2M30.iQWZOmvfupHzPu3G5LhlJyvJ95aGXy2fI5HzfdcXlgg
+Content-Type: application/json
+
+{
+  "title": "My First Note",
+  "content": "This is a test note",
+  "category": "Work"
+}
+
+### 5️⃣ Update a Note (Requires Token)
+PUT http://localhost:5000/api/notes/24
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJpYXQiOjE3NDAwNjcxNjMsImV4cCI6MTc0MDA3MDc2M30.iQWZOmvfupHzPu3G5LhlJyvJ95aGXy2fI5HzfdcXlgg
+Content-Type: application/json
+
+{
+  "title": " Note",
+  "content": "content",
+  "category": "personal"
+}
+
+### 6️⃣ Delete a Note (Requires Token)
+DELETE http://localhost:5000/api/notes/40
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJpYXQiOjE3NDAwNjcxNjMsImV4cCI6MTc0MDA3MDc2M30.iQWZOmvfupHzPu3G5LhlJyvJ95aGXy2fI5HzfdcXlgg
+
+
+
+### 7️⃣ Pin/Unpin a Note (Requires Token)
+PATCH http://localhost:5000/api/notes/30/pin
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJpYXQiOjE3NDAwNjcxNjMsImV4cCI6MTc0MDA3MDc2M30.iQWZOmvfupHzPu3G5LhlJyvJ95aGXy2fI5HzfdcXlgg
+Content-Type: application/json
+
+{
+  "pinned": true
+}
+
+### 8️⃣ Archive/Unarchive a Note (Requires Token)
+PATCH http://localhost:5000/api/notes/30/archive
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJpYXQiOjE3NDAwNjcxNjMsImV4cCI6MTc0MDA3MDc2M30.iQWZOmvfupHzPu3G5LhlJyvJ95aGXy2fI5HzfdcXlgg
+Content-Type: application/json
+
+{
+  "archived": true
+}
