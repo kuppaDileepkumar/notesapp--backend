@@ -260,6 +260,16 @@ app.delete("/api/notes/:id", authenticate, (req, res) => {
   });
 });
 
+app.get("/api/users/:id", async (req, res) => {
+  const user = await User.findByPk(req.params.id);
+  if (user) {
+    res.json({ username: user.username });
+  } else {
+    res.status(404).json({ message: "User not found" });
+  }
+});
+
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
