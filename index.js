@@ -260,14 +260,22 @@ app.delete("/api/notes/:id", authenticate, (req, res) => {
   });
 });
 
+// API Route to Fetch User by ID
 app.get("/api/users/:id", async (req, res) => {
-  const user = await User.findByPk(req.params.id);
-  if (user) {
-    res.json({ username: user.username });
-  } else {
-    res.status(404).json({ message: "User not found" });
+  try {
+    const user = await User.findByPk(req.params.id);
+
+    if (user) {
+      res.json({ username: user.username });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
+
 
 
 // Start the server
